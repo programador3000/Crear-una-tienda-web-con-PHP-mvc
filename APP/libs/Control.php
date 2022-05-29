@@ -20,12 +20,25 @@ class Control{
         if($url!="" && file_exists("../APP/controladores/".ucwords($url[0]).".php")){
             $this->controlador = ucwords($url[0]);
             unset($url[0]);
-            var_dump($url);
+            
+            
         }
         //Cargand la clase del controlador
         require_once("../APP/controladores/".ucwords($this->controlador).".php");
         //Instanciar la clase del controlador
         $this->controlador = new $this->controlador;
+
+        if(isset($url[1])){
+            if (method_exists($this->controlador, $url[1])){
+                $this->metodo = $url[1];
+                unset($url[1]);
+                
+            }
+        }
+
+        $this->parametros = $url;
+        print "<br>"."Metodo:".$this->metodo."<br>";
+        var_dump($this->parametros);
     }
 
     function separarURL(){
