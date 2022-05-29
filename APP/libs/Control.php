@@ -1,12 +1,33 @@
 <?php
 
-// Control manela URL y lanza los procesos
+/*
+*Control maneja la URL y lanza los procesos
+el primer elemento es el objeto o controlador 
+el segundo elemento es el emetodo o accion
+3l tercero y posteriores son los parametros
+*
+*/
 
 class Control{
 
     function __construct()
     {
-       $db= new MySQLdb();
+        $url=  $this->separarURL();
+        var_dump($url);
+    }
+
+    function separarURL(){
+        $url="";
+        if(isset($_GET["url"])){
+            //wliminamos el caracter final
+            $url= rtrim($_GET["url"],"/");
+            $url= rtrim($_GET["url"],"\\");
+            //Limpiamos caracteres no propios para la URL
+            $url= filter_var($url, FILTER_SANITIZE_URL);
+            //Separamos
+            $url= explode("/",$url);
+        }
+        return $url;
     }
 }
 ?>
