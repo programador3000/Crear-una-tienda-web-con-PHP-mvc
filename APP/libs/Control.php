@@ -9,11 +9,23 @@ el segundo elemento es el emetodo o accion
 */
 
 class Control{
+    protected $controlador= "Login";
+    protected $metodo = "caratula";
+    protected $parametros = [];
 
-    function __construct()
-    {
+
+    function __construct(){
         $url=  $this->separarURL();
-        var_dump($url);
+        
+        if($url!="" && file_exists("../APP/controladores/".ucwords($url[0]).".php")){
+            $this->controlador = ucwords($url[0]);
+            unset($url[0]);
+            var_dump($url);
+        }
+        //Cargand la clase del controlador
+        require_once("../APP/controladores/".ucwords($this->controlador).".php");
+        //Instanciar la clase del controlador
+        $this->controlador = new $this->controlador;
     }
 
     function separarURL(){
