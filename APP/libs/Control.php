@@ -27,7 +27,7 @@ class Control{
         require_once("../APP/controladores/".ucwords($this->controlador).".php");
         //Instanciar la clase del controlador
         $this->controlador = new $this->controlador;
-
+        // var_dump($url);
         if(isset($url[1])){
             if (method_exists($this->controlador, $url[1])){
                 $this->metodo = $url[1];
@@ -36,9 +36,12 @@ class Control{
             }
         }
 
-        $this->parametros = $url;
-        print "<br>"."Metodo:".$this->metodo."<br>";
-        var_dump($this->parametros);
+        $this->parametros = $url ? array_values($url):[];
+
+        call_user_func_array([$this->controlador,$this->metodo],
+        $this->parametros);
+        // print "<br>"."Metodo:".$this->metodo."<br>";
+        // var_dump($this->parametros);
     }
 
     function separarURL(){
