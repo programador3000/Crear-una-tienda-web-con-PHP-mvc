@@ -18,8 +18,8 @@
     </div>
 
     <div class="form-group text-left">
-        <label for="correo" class="">* Correo electrónico:</label>
-        <input type="email" class="form-control" name="correo" id="correo" required placeholder="Escriba su correo electrónico"/>
+        <label for="email" class="">* Correo electrónico:</label>
+        <input type="email" class="form-control" name="email" id="email" required placeholder="Escriba su email electrónico"/>
     </div>
 
     <div class="form-group text-left">
@@ -45,6 +45,11 @@
     <div class="form-group text-left">
         <label for="estado" class="">* Estado:</label>
         <input type="text" class="form-control" name="estado" id="estado" required placeholder="Escriba su estado"/>
+    </div>
+
+    <div class="form-group text-left">
+        <label for="colonia" class="">* Colonia:</label>
+        <input type="text" class="form-control" name="colonia" id="colonia" placeholder="Escriba su colonia" required />
     </div>
 
     <div class="form-group text-left">
