@@ -1,7 +1,7 @@
 <?php include_once("encabezado.php"); ?>
                 <h1 class="text-center">Login</h1>
                 <div class="card p-4 bg-light">
-    <form action="login/verifica/" method="POST">
+    <form action="<?php print RUTA; ?>login/verifica/" method="POST">
         <div class="form-grou text-left">
             <label for="Usuario">Usuario:</label>
             <input type="text" name="usuario" class="form-control">
@@ -19,7 +19,7 @@
         
     </form>
     </div><!--card-->
-    <a href="login/alta/" >Darse de alta en el sistema</a><br>
-        <a href="login/olvido/" >¿Olvidaste tu clave de acceso?</a>
-        
+    <a href="<?php print RUTA; ?>login/registro/" >Darse de alta en el sistema</a><br>
+        <a href="<?php print RUTA; ?>login/olvido/" >¿Olvidaste tu clave de acceso?</a>
+
    <?php include_once("piepagina.php") ?>

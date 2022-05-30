@@ -1,7 +1,7 @@
 <?php include_once("encabezado.php"); ?>
 
 <h2 class="text-center">Registro</h2>
-<form action="login/registro/" class="" method="POST">
+<form action="<?php print RUTA; ?>login/registro/" class="" method="POST">
     <div class="form-group text-left">
         <label for="nombre" class="">* Nombre:</label>
         <input type="text" class="form-control" name="nombre" id="nombre" required placeholder="Escriba su nombre"/>
@@ -60,6 +60,7 @@
     <div class="form-group text-left">
         <label for="enviar" class=""></label>
         <input type="submit" class="btn btn-success" value="Enviar datos" role="button"  />
+        <a href="<?php print RUTA; ?>login/" class="btn btn-info">Regresar</a>
     </div>
 </form>
 
