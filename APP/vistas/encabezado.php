@@ -20,3 +20,14 @@
         <div class="row content">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
+            <?php 
+                if (isset($datos["errores"])) {
+                    if (count($datos["errores"])) {
+                        print "<div class='alert alert-danger mt-3'>";
+                        foreach($datos["errores"] as $key => $valor){
+                            print "<strong>* ".$valor."</strong>";
+                        }
+                        print "</div>";
+                    }
+                }
+            ?>

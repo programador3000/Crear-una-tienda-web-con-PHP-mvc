@@ -38,6 +38,20 @@ class Login extends Controlador{
             $estado =isset($_POST["estado"])?$_POST["estado"]:"";
             $codpos=isset($_POST["codpos"])?$_POST["codpos"]:"";
             $pais=isset($_POST["pais"])?$_POST["pais"]:"";
+            $data = [
+                "nombre" => $nombre,
+                "apellidoPaterno" => $apellidoPaterno,
+                "apellidoMaterno"=>$apellidoMaterno,
+                "email"=>$email,
+                "clave1"=>$clave1,
+                "clave2"=>$clave2,
+                "direccion"=>$direccion,
+                "ciudad"=>$ciudad,
+                "colonia"=>$colonia,
+                "estado"=>$estado,
+                "codpos"=>$codpos,
+                "pais"=>$pais
+            ];
             //validacion
             if ($nombre=="") {
                 array_push($errores,"El nombre es requerido");
@@ -81,7 +95,14 @@ class Login extends Controlador{
             if (count($errores)==0) {
                 print "Dar de alta los datos";
             }else{
-                var_dump($errores);
+                $datos = [
+                    "titulo"=> "Registro usuario",
+                    "menu"=>false,
+                    "errores"=>$errores,
+                    "data"=>$data
+                ];
+                $this->vista("loginRegistroVista",$datos);
+            
             }
         } else {
             $datos = [
