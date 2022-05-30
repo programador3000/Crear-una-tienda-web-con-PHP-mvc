@@ -2,10 +2,8 @@
 
 class Controlador{
 
-    function __construct()
-    {
-        
-    }
+    function __construct(){}
+    
     public function modelo($modelo){
         require_once("../app/modelos/".$modelo.".php");
         return new $modelo();
