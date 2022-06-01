@@ -27,5 +27,20 @@ class MySQLdb{
         } else{
             // print "El conjunto de caracteres es: ".mysqli_character_set_name($this->conn)."<br>";
         }
+    }//fin contructora
+    //Query regresa un solo registro en un arreglo asociado
+    function query($sql){
+        $data = array();
+        $r = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($r)>0){
+            $data =mysqli_fetch_assoc($r);
+        }
+        return $data;
+    }
+    //Query regresa un valor booleano
+    function queryNoSelect($sql){
+        $data = array();
+        $r = mysqli_query($this->conn, $sql);
+        return $r;
     }
 }

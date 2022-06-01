@@ -93,7 +93,12 @@ class Login extends Controlador{
                 array_push($errores,"El correo electronico no es valido");
             }
             if (count($errores)==0) {
-                print "Dar de alta los datos";
+                $r = $this->modelo->insertarRegistro($data);
+                if($r){
+                    print "Se inserto correctamente el registro";
+                }else{
+                    print "No se inserto el registro";
+                }
             }else{
                 $datos = [
                     "titulo"=> "Registro usuario",
