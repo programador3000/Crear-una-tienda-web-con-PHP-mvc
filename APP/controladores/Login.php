@@ -95,7 +95,20 @@ class Login extends Controlador{
             if (count($errores)==0) {
                 $r = $this->modelo->insertarRegistro($data);
                 if($r){
-                    print "Se inserto correctamente el registro";
+                    $datos = [
+                        "titulo"=> "Bienbenida a la tienda virtual",
+                        "menu"=>false,
+                        "errores"=>[],
+                        "data"=>[],
+                        "subtitulo"=>"Bienvenid@ a nuestra tienda",
+                        "texto"=> "Gracias por su registro.",
+                        "color"=>"alert-success",
+                        "url"=>"menu",
+                        "colorBoton"=>"btn-success",
+                        "textoBoton"=>"Iniciar"
+                    ];
+                    $this->vista("mensajeVista",$datos);
+                
                 }else{
                     print "No se inserto el registro";
                 }
