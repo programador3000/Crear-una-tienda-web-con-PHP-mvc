@@ -59,11 +59,8 @@
 
         $asunto= "Cambiar clave de acceso";
 
-        if(@mail($email,$asunto, $msg, $headers)){
-            print "ok";
-        }else{
-            print "error";
-        }
+        return @mail($email,$asunto, $msg, $headers);
+            
     }
  
  }

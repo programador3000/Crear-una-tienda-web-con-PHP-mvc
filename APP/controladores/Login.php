@@ -34,7 +34,37 @@ class Login extends Controlador{
                 if($this->modelo->validaCorreo($email)){
                     array_push($errores,"El correo electronico no existe en la base de datos");
                 }else{
-                    $this->modelo->enviarCorreo($email);
+                    if(!$this->modelo->enviarCorreo($email)){
+                        $datos = [
+                            "titulo"=> "Cambio de clave de acceso",
+                            "menu"=>false,
+                            "errores"=>[],
+                            "data"=>[],
+                            "subtitulo"=>"Cambio de clave de acceso",
+                            "texto"=> "Se ha enviado un correo a <b>".$email."</b> para que pueedas cambiar tu clave de acceso. Cualquier duda te puedes comunicar con nosotros. No olvides revisar tu bandeja de spam",
+                            "color"=>"alert-success",
+                            "url"=>"login",
+                            "colorBoton"=>"btn-success",
+                            "textoBoton"=>"Regresar"
+                        ];
+                        $this->vista("mensajeVista",$datos);
+                    
+                    }else{
+                        $datos = [
+                            "titulo"=> "Error en el envio del correo",
+                            "menu"=>false,
+                            "errores"=>[],
+                            "data"=>[],
+                            "subtitulo"=>"Error en el envio del correo",
+                            "texto"=> "Existió un problema al enviar el correo electronico. Prueba por favor más tarde o comuniquese a nuestro servicio de soporte tecnico.",
+                            "color"=>"alert-danger",
+                            "url"=>"login",
+                            "colorBoton"=>"btn-danger",
+                            "textoBoton"=>"Regresar"
+                        ];
+                        $this->vista("mensajeVista",$datos);
+                    }
+                    
                 }
             }
         }else{
@@ -174,15 +204,18 @@ class Login extends Controlador{
             
             }
         } else {
-            $datos = [
-                "titulo"=> "Registro usuario",
-                "menu"=>false 
-            ];
-            $this->vista("loginRegistroVista",$datos);
+           
         }
-        
     }
-        
+    
+    function cambiaclave($data){
+        $datos = [
+            "titulo"=> "Cambia clave de acceso",
+            "menu"=>false,
+            "data" => $data
+        ];
+        $this->vista("loginCambiaClave",$datos);
+    }
 
     // function metodoVariable(){
     //     if(func_num_args()>0){
