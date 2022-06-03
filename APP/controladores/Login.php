@@ -20,11 +20,50 @@ class Login extends Controlador{
     }
 
     function olvido(){
-        print "Hola desde el olvido";
+        $errores=array();
+        $data = array();
+        if ($_SERVER['REQUEST_METHOD']=="POST") {
+            $email = isset($_POST["email"])?$_POST["email"]:"";
+            if ($email=="") {
+                array_push($errores,"El email es requerido");
+            }
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {   
+                array_push($errores,"El correo electronico no es valido");
+            }
+            if(count($errores)==0){
+                if($this->modelo->validaCorreo($email)){
+                    array_push($errores,"El correo electronico no existe en la base de datos");
+                }else{
+                    $this->modelo->enviarCorreo($email);
+                }
+            }
+        }else{
+            $datos = [
+                "titulo"=> "Olvido de la contraseña",
+                "menu"=>false,
+                "errores"=>[],
+                "data"=>[],
+                "subtitulo"=>"¿Olvidaste tu contraseña",
+                
+            ];
+            $this->vista("loginOlvidoVista",$datos);
+        }
+        if(count($errores)){
+            $datos = [
+                "titulo"=> "Olvido de clave de acceso",
+                "menu"=>false,
+                "errores"=>$errores,
+                "subtitulo"=>"¿Olvidaste tu contraseña",
+                "data"=>[]
+            ];
+            $this->vista("loginOlvidoVista",$datos);
+        }
+    
     }
 
     function registro(){
         $errores=array();
+        $data = array();
         if ($_SERVER['REQUEST_METHOD']=="POST") {
             $nombre = isset($_POST["nombre"])?$_POST["nombre"]:"";
             $apellidoPaterno = isset($_POST["apellidoPaterno"])? $_POST["apellidoPaterno"]:"";

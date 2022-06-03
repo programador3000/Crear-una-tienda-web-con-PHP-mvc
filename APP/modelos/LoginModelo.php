@@ -37,6 +37,10 @@
         $data= $this->db->query($sql);
         return (count($data)==0)?true:false;
     }
+
+    function enviarCorreo($email){
+        print $email;
+    }
  
  }
 ?>
