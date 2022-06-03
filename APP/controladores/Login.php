@@ -110,7 +110,19 @@ class Login extends Controlador{
                     $this->vista("mensajeVista",$datos);
                 
                 }else{
-                    print "No se inserto el registro";
+                    $datos = [
+                        "titulo"=> "Error en el registro",
+                        "menu"=>false,
+                        "errores"=>[],
+                        "data"=>[],
+                        "subtitulo"=>"Error en el registro",
+                        "texto"=> "Existió un error en el registro, posiblemente ya existe ese correo en nuestra base de datos, favor de verificarlo",
+                        "color"=>"alert-danger",
+                        "url"=>"login",
+                        "colorBoton"=>"btn-danger",
+                        "textoBoton"=>"Regresar"
+                    ];
+                    $this->vista("mensajeVista",$datos);
                 }
             }else{
                 $datos = [
