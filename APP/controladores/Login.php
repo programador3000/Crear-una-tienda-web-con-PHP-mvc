@@ -209,12 +209,41 @@ class Login extends Controlador{
     }
     
     function cambiaclave($data){
-        $datos = [
-            "titulo"=> "Cambia clave de acceso",
-            "menu"=>false,
-            "data" => $data
-        ];
-        $this->vista("loginCambiaClave",$datos);
+        $errores = array();
+        if($_SERVER['REQUEST_METHOD']=="POST"){
+            $id = isset($_POST["id"])?$_POST["id"]:"";
+            $clave1=isset($_POST["clave1"])?$_POST["clave1"]:"";
+            $clave2=isset($_POST["clave2"])?$_POST["clave1"]:"";
+            //validaciones
+            if ($clave1=="") {
+                array_push($errores, "La clave de acceso es requerida");
+            }
+            if ($clave2=="") {
+                array_push($errores, "La clave de verificacion es requerida");
+            }
+            if ($clave1!=$clave2) {
+                array_push($errores, "Las claves de acceso no coinciden");
+            }
+            if (count($errores)){
+                $datos = [
+                    "titulo"=> "Cambia clave de acceso",
+                    "menu"=>false,
+                    "errores"=>$errores,
+                    "data" => $data
+                ];
+                $this->vista("loginCambiaClave",$datos);
+            }else{
+
+            }
+        }else{
+            $datos = [
+                "titulo"=> "Cambia clave de acceso",
+                "menu"=>false,
+                "data" => $data
+            ];
+            $this->vista("loginCambiaClave",$datos);
+        }
+        
     }
 
     // function metodoVariable(){

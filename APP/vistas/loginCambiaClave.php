@@ -13,6 +13,7 @@
         </div>
 
         <div class="form-group text-left">
+            <input type="hidden" name="id" value="<?php print $datos['data']; ?>"/>
             <input type="submit" value="Enviar" class="btn btn-success"></td>
             <a href="<?php print RUTA. '/login/'; ?>" class='btn btn-info'>Regresar</a>
         </div>
