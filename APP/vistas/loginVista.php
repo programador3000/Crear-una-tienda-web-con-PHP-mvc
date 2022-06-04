@@ -2,7 +2,7 @@
                 <h1 class="text-center">Login</h1>
                 <div class="card p-4 bg-light">
     <form action="<?php print RUTA; ?>login/verifica/" method="POST">
-        <div class="form-grou text-left">
+        <div class="form-group text-left">
             <label for="Usuario">Usuario:</label>
             <input type="text" name="usuario" class="form-control"
             placeholder="Escribe tu usuario (tu correo electronico)"
@@ -20,17 +20,20 @@
             ?>"
             >
         </div>
+        
         <div class="form-group text-left">
-            <input type="submit" value="Enviar" class="btn btn-success"></td>
+            <input type="submit" value="Enviar" class="btn btn-success">
         </div>
         
             <input type="checkbox" name="recordar"
             <?php
-            if(isset($datos['data']['record'])){
-                if($datos['data']['recordar'=="on"]) print "checked";
+            if(isset($datos['data']['recordar'])){
+                if($datos['data']['recordar']=="on") print "checked";
             }
             ?>
-            <label for="clave" class="">Recordar</label>
+            
+            <label for="recordar" >Recordar</label>
+            
         
     </form>
     </div><!--card-->
