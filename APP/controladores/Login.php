@@ -282,10 +282,23 @@ class Login extends Controlador{
             $clave = isset($_POST["clave"])?$_POST["clave"]:"";
             $recordar = isset($_POST["recordar"])?"on":"of";
             $errores = $this->modelo->verificar($usuario,$clave);
+            //
+            $data = [
+                "usuario" =>$usuario,
+                "clave" => $clave,
+                "recordar" => $recordar
+            ];
+            //
             if (empty($errores)) {
                 print "Bienvenid@...";
             } else {
-                print "No tiene acceso";
+                $datos=[
+                    "titulo"=>"Login",
+                    "menu"=>false,
+                    "errores" =>$errores,
+                    "data"=>$data
+                ];
+                $this->vista("loginVista",$datos);
             }
         }
     }
