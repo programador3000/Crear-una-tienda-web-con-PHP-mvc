@@ -47,6 +47,22 @@
         return (count($data)==0)?true:false;
     }
 
+    function verificar($usuario,$clave){
+        $errores=array();
+        $sql = "SELECT * FROM usuarios WHERE email='".$usuario."'";
+        $clave = hash_hmac("sha512",$clave,"mimamamemima");
+        $clave = substr($clave,0,200);
+        //consulta
+        $data= $this->db->query($sql);
+        //validacion
+        if (empty($data)) {
+            array_push($errores,"No existe ese usuario, favor de verificarlo.");
+        } else if($clave!=$data["clave"]) {
+            array_push($errores, "Clave de acceso erronea, favor de verificarlo.");
+        }     
+        return $errores;
+    }
+
     function getUsuarioCorreo($email){
         $sql = "SELECT * FROM usuarios WHERE email='".$email."'";
         $data= $this->db->query($sql);

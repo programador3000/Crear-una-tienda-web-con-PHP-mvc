@@ -177,7 +177,7 @@ class Login extends Controlador{
                         "textoBoton"=>"Iniciar"
                     ];
                     $this->vista("mensajeVista",$datos);
-                
+                }
                 }else{
                     $datos = [
                         "titulo"=> "Error en el registro",
@@ -203,9 +203,7 @@ class Login extends Controlador{
                 $this->vista("loginRegistroVista",$datos);
             
             }
-        } else {
-           
-        }
+    
     }
     
     function cambiaclave($data){
@@ -274,8 +272,23 @@ class Login extends Controlador{
             $this->vista("loginCambiaClave",$datos);
         }
         
+        
     }
 
+    function verifica(){
+        $errores = array();
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $usuario = isset($_POST["usuario"])?$_POST["usuario"]:"";
+            $clave = isset($_POST["clave"])?$_POST["clave"]:"";
+            $recordar = isset($_POST["recordar"])?"on":"of";
+            $errores = $this->modelo->verificar($usuario,$clave);
+            if (empty($errores)) {
+                print "Bienvenid@...";
+            } else {
+                print "No tiene acceso";
+            }
+        }
+    }
     // function metodoVariable(){
     //     if(func_num_args()>0){
     //         for($i=0; $i < func_num_args(); $i++){
@@ -293,5 +306,5 @@ class Login extends Controlador{
     // }
 
     
-}
+    }
 ?>
