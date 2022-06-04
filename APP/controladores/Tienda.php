@@ -12,11 +12,20 @@ class Tienda extends Controlador{
 
     function caratula()
     {
-        $datos=[
-            "titulo"=>"Bienvenid@ a nuestra tienda",
-            "menu"=>false
-        ];
-        $this->vista("tiendaVista",$datos);
+        $sesion=new Sesion(); 
+        
+        if ($sesion->getLogin()) {
+            var_dump($sesion->getUsuario());
+            $datos=[
+                "titulo"=>"Bienvenid@ a nuestra tienda",
+                "menu"=>false
+            ];
+            $this->vista("tiendaVista",$datos);
+        } else {
+            header("location:".RUTA);
+        }
+        
+        
     }
 }
 ?>

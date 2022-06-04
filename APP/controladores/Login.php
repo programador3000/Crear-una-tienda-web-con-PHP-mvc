@@ -310,6 +310,11 @@ class Login extends Controlador{
             ];
             //
             if (empty($errores)) {
+                $data=$this->modelo->getUsuarioCorreo($usuario);
+                $sesion=new Sesion();
+                
+                $sesion->iniciarLogin($data);
+                //
                 header("location:".RUTA."tienda");
             } else {
                 $datos=[
@@ -322,6 +327,7 @@ class Login extends Controlador{
             }
         }
     }
+
     // function metodoVariable(){
     //     if(func_num_args()>0){
     //         for($i=0; $i < func_num_args(); $i++){
