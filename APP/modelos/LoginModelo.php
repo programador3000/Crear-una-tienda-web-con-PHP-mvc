@@ -30,8 +30,17 @@
 
          }
          return $r;
-         
         }
+
+        function cambiarClaveAcceso($id, $clave){
+                $r = false;
+                $clave = hash_hmac("sha512",$clave,"mimamamemima");
+                $sql = "UPDATE usuarios SET "; 
+                $sql.="clave='".$clave."' ";
+                $sql.= "WHERE id=".$id;
+                $r = $this->db->queryNoSelect($sql);
+                return $r;
+           }    
      function validaCorreo($email){
         $sql = "SELECT * FROM usuarios WHERE email='".$email."'";
         $data= $this->db->query($sql);

@@ -233,7 +233,37 @@ class Login extends Controlador{
                 ];
                 $this->vista("loginCambiaClave",$datos);
             }else{
-
+                //No hay errores
+                if ($this->modelo->cambiarClaveAcceso($id,$clave1)) {
+                    $datos = [
+                        "titulo"=> "Modificar clave de acceso",
+                        "menu"=>false,
+                        "errores"=>[],
+                        "data"=>[],
+                        "subtitulo"=>"Modificar clave de acceso",
+                        "texto"=> "La modificación de la clave de acceso fue exitosa. Bienvenido nuevamente",
+                        "color"=>"alert-success",
+                        "url"=>"login",
+                        "colorBoton"=>"btn-success",
+                        "textoBoton"=>"Regresar"
+                    ];
+                    $this->vista("mensajeVista",$datos);
+                } else {
+                    $datos = [
+                        "titulo"=> "Error al modificar la clave de acceso",
+                        "menu"=>false,
+                        "errores"=>[],
+                        "data"=>[],
+                        "subtitulo"=>"Error al modificar la clave de acceso",
+                        "texto"=> "Existio un error al modificar la clave de acceso.",
+                        "color"=>"alert-danger",
+                        "url"=>"login",
+                        "colorBoton"=>"btn-danger",
+                        "textoBoton"=>"Regresar"
+                    ];
+                    $this->vista("mensajeVista",$datos);
+                }
+                
             }
         }else{
             $datos = [
