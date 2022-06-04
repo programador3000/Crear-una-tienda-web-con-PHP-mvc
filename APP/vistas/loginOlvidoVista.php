@@ -9,6 +9,7 @@
         </div>
         <div class="form-group text-left">
             <input type="submit" value="Enviar" class="btn btn-success"></td>
+            <a href="<?php print RUTA; ?>" class="btn btn-info">Regresar</a>
         </div>
         
            
